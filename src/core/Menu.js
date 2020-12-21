@@ -1,38 +1,60 @@
-import React from 'react';
-import {Link, withRouter} from 'react-router-dom';
-
+import React, { Fragment } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { isAuthenticate, signout } from "../auth";
 
 const isActive = (history, path) => {
-    if(history.location.pathname === path) {
-        return { color: "#ff9900"}
+    if (history.location.pathname === path) {
+        return { color: "#ff9900" }
     } else {
-        return { color: "#FFFFFF"}
+        return { color: "#FFFFFF" }
     }
 }
- 
+
 const Menu = ({ history }) => {
-    return ( 
-    <div>
+    return (
+        <div>
 
-<ul className="nav navbar-tabs bg-primary">
+            <ul className="nav navbar-tabs bg-primary">
 
-  <li className="nav-item">
-      <Link className="nav-link" to="/"  style = {isActive(history, "/")} >Home</Link>
-  </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/" style={isActive(history, "/")} >Home</Link>
+                </li>
 
-  <li className="nav-item">
-      <Link className="nav-link" to="/signin"  style = {isActive(history, "/signin")}>Signin</Link>
-  </li>
+                {!isAuthenticate() && (
 
-  <li className="nav-item">
-      <Link className="nav-link" to="/signup"  style = {isActive(history, "/signup")} >SignUp</Link>
-  </li>
+                    <Fragment>
 
-</ul>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/signin" style={isActive(history, "/signin")}>Signin</Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/signup" style={isActive(history, "/signup")} >SignUp</Link>
+                        </li>
+
+                    </Fragment>
+
+                )}
+
+                {isAuthenticate && (
+                    <li className="nav-item">
+                        <span
+                            className="nav-link"
+                            onClick={() => signout(() => {
+                                history.push('/')
+                            })}
+                            style={{ cursor: 'pointer', color: '#ffffff' }}
+                        >
+                            Signout
+                    </span>
+                    </li>
+                )}
+
+            </ul>
 
 
-    </div> 
+        </div>
     );
 }
- 
+
 export default withRouter(Menu);
