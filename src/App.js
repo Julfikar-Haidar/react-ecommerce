@@ -1,8 +1,10 @@
-import React from 'react';
+// import React from 'react';
+// import React, { Component } from 'react';
+
 
 // class App extends Component {
 //   state = {  
-//     count: 0
+//     count: 5
 //   }
 
 //   inCrement = () => {
@@ -13,7 +15,7 @@ import React from 'react';
 
 //   render() { 
 //     return ( 
-//       <div>
+//       <div className="mt-3">
 //         <h1>Counter App</h1>
 //       <button onClick={this.inCrement}>Clicked {this.state.count} Item</button>
 //       </div>
@@ -25,14 +27,14 @@ import React from 'react';
 
 
 
-const App = () => {
+// const App = () => {
 
-  return (
-    <div>
-      <h1>Counter App</h1>
+//   return (
+//     <div>
+//       <h1>Counter App</h1>
       
-    </div>
-  );
-}
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
